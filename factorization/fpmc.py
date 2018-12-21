@@ -103,7 +103,12 @@ class FPMC(MFBase):
 				factor_signs = np.sign(np.concatenate((self.V_user_item[user_id, :], self.V_prev_next[prev_item, :])))
 				factor_prob = np.abs(np.concatenate((self.V_user_item[user_id, :], self.V_prev_next[prev_item, :]))) * self.var
 				f = np.random.choice(self.k_cf+self.k_mc, p=factor_prob/sum(factor_prob))
-				false_next = self.ranks[int(rank) * factor_signs[f],f]
+				# print('rank:', rank)
+				# print('factor_signs:', factor_signs)
+				# print('f:', f)
+				# print('self.ranks:', self.ranks)
+				# print('int(rank) * factor_signs[f]:', int(rank) * factor_signs[f])
+				false_next = self.ranks[int(rank) * int(factor_signs[f]),f]
 				if false_next != true_next:
 					break
 		else:
