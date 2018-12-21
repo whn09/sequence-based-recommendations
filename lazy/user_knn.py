@@ -28,10 +28,12 @@ class UserKNN(Lazy):
 		if os.path.isfile(filename + '.npy'):
 			file_content = np.load(filename + '.npy')
 		else:
-			file_content = np.loadtxt(filename)
+			file_content = np.loadtxt(filename, dtype=int)
 			np.save(filename, file_content)
 
 		#self.user_item = ssp.coo_matrix((file_content[:,2], (file_content[:,0], file_content[:,1]))).tocsr()
+		# print('file_content[:,0]:', file_content[:,0])
+		# print('file_content[:,1]:', file_content[:,1])
 		self.binary_user_item = ssp.coo_matrix((np.ones(file_content.shape[0]), (file_content[:,0], file_content[:,1]))).tocsr()
 
 		del file_content

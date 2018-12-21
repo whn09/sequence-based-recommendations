@@ -30,7 +30,7 @@ class MarkovModel(Lazy):
 		with open(dataset.training_set.filename, 'r') as f:
 			for sequence in f:
 				sequence = sequence.split()
-				items = map(int, sequence[1::2])
+				items = map(int, sequence[1::3])
 				s = dict()
 				for i in range(len(items)-1):
 					s[items[i]] = items[i+1]
